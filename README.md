@@ -15,7 +15,7 @@ intsall `node manager`
 Clone the ePayroll repository using [git]:
 
 ```
-git clone https://github.com/angular/ePayroll.git
+git clone https://github.com/SrikantSahoo/ePayroll.git
 cd ePayroll
 ```
 
@@ -36,7 +36,3 @@ npm start
 ```
 
 Now browse to the app at `http://localhost:8000/app`.
-
-
-
-
