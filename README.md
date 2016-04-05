@@ -3,11 +3,11 @@
 
 ## Getting Started
 
-intsall `node manager`
+intsall `node js` and `npm`
 
  https://nodejs.org/en/download/package-manager/
  
- once installed check  `nmp -v`
+ once installed check  `node -v` and `npm -v`
 
 
 ### Clone ePayroll
@@ -35,4 +35,4 @@ npm install
 npm start
 ```
 
-Now browse to the app at `http://localhost:8000/app`.
+Now browse to the app at `http://localhost:8000/app/#/payslip`.
