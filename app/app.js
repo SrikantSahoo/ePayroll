@@ -20,7 +20,6 @@
 	angular
 		.module("ePayroll",[
 			'ngRoute',
-			'lokijs',
 			'ngCsvImport',
 			'ngSanitize', 
 			'ngCsv',
