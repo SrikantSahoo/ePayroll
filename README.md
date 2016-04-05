@@ -8,7 +8,7 @@
 Clone the ePayroll repository using [git][git]:
 
 ```
-git clone https://github.com/angular/ePayroll.git
+git clone https://github.com/SrikantSahoo/ePayroll.git
 cd ePayroll
 ```
 
