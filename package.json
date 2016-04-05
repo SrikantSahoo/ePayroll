@@ -1,9 +1,9 @@
 {
-  "name": "angular-seed",
+  "name": "ePayroll",
   "private": true,
   "version": "0.0.0",
-  "description": "A starter project for AngularJS",
-  "repository": "https://github.com/angular/angular-seed",
+  "description": "This app is to generate payslip",
+  "repository": "https://github.com/SrikantSahoo/ePayroll.git",
   "license": "MIT",
   "devDependencies": {
     "bower": "^1.3.1",
