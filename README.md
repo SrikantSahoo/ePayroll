@@ -3,9 +3,16 @@
 
 ## Getting Started
 
+intsall `node manager`
+
+ https://nodejs.org/en/download/package-manager/
+ 
+ once installed check  `nmp -v`
+
+
 ### Clone ePayroll
 
-Clone the ePayroll repository using [git][git]:
+Clone the ePayroll repository using [git]:
 
 ```
 git clone https://github.com/angular/ePayroll.git
@@ -13,7 +20,6 @@ cd ePayroll
 ```
 
 ### Install Dependencies
-
 
  `npm` is preconfigured to automatically run `bower` so we can simply do:
 
