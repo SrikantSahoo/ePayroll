@@ -1,0 +1,63 @@
+[
+  {
+    "id":"1",
+    "fromamount": 0,
+    "toamount": 18200,
+    "taxover": 0,
+    "taxamount": 0,
+    "taxperdollor": 0,
+    "ratestartyear": "2015",
+    "rateendyear": "2016",
+    "effectivedate": "2015-06-1",
+    "status": "active"
+  },
+  {
+    "id":"2",
+    "fromamount": 18201,
+    "toamount": 37000,
+    "taxover": 18200,
+    "taxamount": 0,
+    "taxperdollor": 0.19,
+    "ratestartyear": "2015",
+    "rateendyear": "2016",
+    "effectivedate": "2015-06-1",
+    "status": "active"
+  },
+  {
+    "id":"3",
+    "fromamount": 37001,
+    "toamount": 80000,
+    "taxover": 37000,
+    "taxamount": 3572,
+    "taxperdollor": 0.325,
+    "ratestartyear": "2015",
+    "rateendyear": "2016",
+    "effectivedate": "2015-06-1",
+    "status": "active"
+  },
+  {
+    "id":"4",
+    "fromamount": 80001,
+    "toamount": 180000,
+    "taxover": 80000,
+    "taxamount": 17547,
+    "taxperdollor": 0.37,
+    "ratestartyear": "2015",
+    "rateendyear": "2016",
+    "effectivedate": "2015-06-1",
+    "status": "active"
+  },
+  {
+    "id":"5",
+    "fromamount": 180001,
+    "toamount": 1800000,
+    "taxover": 180000,
+    "taxamount": 54547,
+    "taxperdollor": 0.45,
+    "ratestartyear": "2015",
+    "rateendyear": "2016",
+    "effectivedate": "2015-06-1",
+    "status": "active"
+  }
+  
+]

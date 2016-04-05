@@ -1,0 +1,111 @@
+<div class="row" ng-controller="taxtableController" >
+	
+	<div class="col-md-6">
+		<div class="panel panel-default">
+		<div class="panel-body">
+		<legend>Add Tax Slab</legend>
+		<form ng-submit="addTaxslab()">
+			<div class="form-group">
+				<label for="min_income">Income Amount</label>
+				<div class="form-inline">
+				    <div class="input-group">
+				      <div class="input-group-addon">$</div>
+				      <input type="text" class="form-control" ng-model="taxslab.min_income" placeholder="Amount From">
+				      <div class="input-group-addon">.00</div>
+				    </div>
+				    <label>-</label>
+				    <div class="input-group">
+				      <div class="input-group-addon">$</div>
+				      <input type="text" class="form-control" ng-model="taxslab.max_income" placeholder="Amount To">
+				      <div class="input-group-addon">.00</div>
+				    </div>
+				</div>
+ 			</div>
+
+ 			<div class="form-group">
+				<label for="min_income">Tax On Amount Over</label>
+			    <div class="input-group">
+			      <div class="input-group-addon">$</div>
+			      <input type="text" class="form-control" ng-model="taxslab.tax_over" placeholder="Amount">
+			     
+			    </div>
+ 			</div>
+
+
+ 			<div class="form-group">
+				<label for="min_income">Tax</label>
+				<div class="form-inline">
+				    <div class="input-group">
+				      <div class="input-group-addon">$</div>
+				      <input type="text" class="form-control" ng-model="taxslab.tax_amount" placeholder="Tax Amount">
+				      
+				    </div>
+				    <label>Plus</label>
+				    <div class="input-group">
+				      <div class="input-group-addon">c</div>
+				      <input type="text" class="form-control" ng-model="taxslab.taxplus_perdollor" placeholder="Amount per $1">
+				      
+				    </div>
+				</div>
+ 			</div>
+
+ 			<div class="form-group">
+				<label>Tax Year</label>
+				<div class="form-inline">
+				      <input type="text" class="form-control" ng-model="taxslab.rate_startyear" placeholder="Start Year">
+				      <label>-</label>
+				      <input type="text" class="form-control" ng-model="taxslab.rate_endyear"  placeholder="End Year">
+				</div>
+ 			</div>
+
+ 			<div class="form-group">
+				<label>Effective from</label>
+				<input type="text" class="form-control" ng-model="taxslab.effective_date"  placeholder="Effective Date">
+ 			</div>
+
+
+			<div class="form-group">
+				<label>Status</label>
+				<div >
+				<input type="checkbox" ng-model="taxslab.status"> Active?
+	 			</div>
+ 			</div>
+ 	
+			<div class="panel-footer">
+				<button class="btn btn-primary">
+					Submit
+				</button>
+			</div>
+			
+		</form>
+	</div>
+	</div>
+	</div>
+	<div class="col-md-6">
+	<div class="panel panel-default">
+		<div class="panel-body">
+		<legend>Tax Slabs</legend>
+		  <div class="table-responsive">
+	        <table class="table table-hover">
+	          <thead class="bg-danger">
+	            <tr>
+	              <th>No:</th>
+	              <th>Amount</th>
+	              <th>Tax</th>
+	              <th colspan="2" style="text-align:center">Action</th>
+	            </tr>
+	          </thead>
+	          <tbody>
+	            <tr ng-repeat="taxslab in taxslabs.find() track by $index">
+	              <td>{{$index+1}}</td>
+	              <td>{{taxslab.min_income + '-' + taxslab.max_income }}</td>
+	              <td>{{  taxslab.tax_amount 	  }}</td>
+	              <td>Edit</td>
+	              <td>Delete</td>
+	            </tr>
+	          </tbody>
+	        </table>
+	      </div>
+	</div>
+	</div>
+</div>

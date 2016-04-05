@@ -1,0 +1,160 @@
+
+<div class="container" >
+
+	<div class="page-header">
+		<h3>{{ title }}</h3>
+
+	</div>
+
+	<section class="mainsection">
+
+		<div role="tabpanel">
+			<!-- Nav tabs -->
+			 <ul class="nav nav-tabs" role="tablist" id="myTab">
+	            <li role="presentation" class="active"><a  href="#single" aria-controls="single" role="tab" data-toggle="tab">Single Request</a>
+	            </li>
+	            <li role="presentation" ><a  href="#bulk" aria-controls="bulk" role="tab" data-toggle="tab">Bulk Request</a>
+	            </li>
+	        </ul>
+
+			<!-- Tab panes -->
+			<div class="tab-content">
+				<div role="tabpanel" class="tab-pane active" id="single">
+					<div class="panel-default">
+						<div class="panel-body">
+							<div class="row text-center">
+								<form name="employeeForm" class="form-inline" ng-submit="generatePayslip()" novalidate>
+									<div class="form-group" ng-class="{ 'has-error' : employeeForm.firstname.$invalid && !employeeForm.firstname.$pristine }">
+										<label class="sr-only" for="">label</label>
+										<input type="text" name="firstname" class="form-control" ng-model="employee.firstname" placeholder="First Name" required>
+            							<p ng-show="employeeForm.firstname.$invalid && !employeeForm.firstname.$pristine" class="help-block">First name is required.</p>
+									</div>
+									<div class="form-group" ng-class="{ 'has-error' : employeeForm.lastname.$invalid && !employeeForm.lastname.$pristine }">
+										<label class="sr-only" for="">label</label>
+										<input type="text" name="lastname" class="form-control" ng-model="employee.lastname" placeholder="Last Name" required>
+            							<p ng-show="employeeForm.lastname.$invalid && !employeeForm.lastname.$pristine" class="help-block">Last name is required.</p>
+									</div>
+									<div class="form-group" ng-class="{ 'has-error' : employeeForm.annualsalary.$invalid && !employeeForm.annualsalary.$pristine }">
+										<label class="sr-only" for="">label</label>
+										<div class="input-group">
+											<div class="input-group-addon">$</div>
+											<input type="number" name="annualsalary" class="form-control" ng-model="employee.annualsalary" placeholder="Annual Salary" required ng-pattern="/^[1-9][0-9]{0,2}(?:,?[0-9]{3}){0,3}(?:\.[0-9]{1,2})?$/">
+										</div>
+										<p ng-show="employeeForm.annualsalary.$error.pattern" class="help-block">Not a valid number!</p>
+										<p ng-show="employeeForm.annualsalary.$invalid && !employeeForm.annualsalary.$pristine" class="help-block">*Required(Positive numbers)</p>
+									</div>
+									<div class="form-group" ng-class="{ 'has-error' : employeeForm.superrate.$invalid && !employeeForm.superrate.$pristine }">
+										<label class="sr-only" for="">label</label>
+										<div class="input-group">
+											<input type="number" class="form-control" name="superrate" placeholder="Super Rate" ng-model="employee.superrate" required  max="50" ng-pattern="/^[1-9][0-9]{0,2}(?:,?[0-9]{3}){0,3}(?:\.[0-9]{1,2})?$/" >
+											<div class="input-group-addon">%</div>
+										</div>
+										<p ng-show="employeeForm.superrate.$error.max" class="help-block" style="color: red">Max super rate 50</p>
+										<p ng-show="employeeForm.annualsalary.$error.pattern" class="help-block">Not a valid number!</p>
+										<p ng-show="employeeForm.superrate.$invalid && !employeeForm.superrate.$pristine" class="help-block">*Required(Positive numbers)</p>
+								
+										
+									</div>
+									<div class="form-group" ng-class="{ 'has-error' : employeeForm.paymentstartdate.$invalid && !employeeForm.paymentstartdate.$pristine }">
+										<label class="sr-only" for="">label</label>
+										<select ng-model="employee.paymentstartdate" class="form-control" ng-options="payperiod as payperiod.name for payperiod in payperiods track by payperiod.id" value="{{ payperiod.id }}" name="paymentstartdate" required>
+											<option value="">Select Payment Period! </option>
+										</select>
+										<p ng-show="employeeForm.paymentstartdate.$invalid && !employeeForm.paymentstartdate.$pristine" class="help-block">Payment period required.</p>
+									</div>
+									<button type="submit" class="btn btn-primary" ng-disabled="employeeForm.$invalid">Submit</button>
+        
+								</form>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<div role="tabpanel" class="tab-pane" id="bulk">
+					<div class="row text-center">
+						<div class="title"><h4>Select your CSV file: </h4></div>
+						<div class="row">
+							<div class="form-inline">
+								<ng-csv-import 
+								class="form-control"
+								content="csv.content"
+								header="csv.header" 
+								header-visible="csv.headerVisible" 
+								separator="csv.separator"
+								separator-visible="csv.separatorVisible"
+								result="csv.result"
+								encoding="csv.encoding"
+								encoding-visible="csv.encodingVisible">
+							</ng-csv-import>
+							<button ng-click="toPrettyJSON(csv.result, 2);clear()" class="btn btn-primary">Submit</button>
+						</div>
+					</div>
+					<div>
+					<div ng-show="csverrors.length" >
+						<br />
+						<label style="color:red;">You have {{ csverrors.length }} erros. Please scroll down to view. </label>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div>
+		<br />
+		<legend>Payslip
+			<a  ng-show="payslips.length" class="btn" title="Export Payslip" csv-header="['Name', 'Pay Period', 'Gross Income', 'Income Tax', 'Net Income', 'Super']" ng-csv="payslips" filename="{{ downloadfile }}">
+		        <i class="glyphicon glyphicon-new-window"></i> &#160;Export
+		    </a>
+		</legend>
+		<div class="tableresults">
+			<div class="table-responsive">
+				<table class="table table-hover" export-csv-ignore="csv" separator=",">
+					<thead class="bg-success">
+						<tr>
+							<th>Name</th>
+							<th>Pay Period</th>
+							<th>Gross Income</th>
+							<th>Income Tax</th>
+							<th>Net Income</th>
+							<th>Super</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="payslip in payslips">
+							<td>{{ payslip.name }}</td>
+							<td>{{ payslip.payperiod }}</td>
+							<td>{{ payslip.grossincome |number:0}}</td>
+							<td>{{ payslip.incometax | number:0 }}</td>
+							<td>{{ payslip.netincome| number:0 }}</td>
+							<td>{{ payslip.super|number:0  }}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<br />
+
+	<legend class="danger" ng-show="csverrors.length">Errors</legend>
+	<div class="row alert alert-danger" ng-show="csverrors.length">
+		<div class="table-responsive">
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>No</th>
+						<th>Invalid Data</th>
+						<th>Requested Data</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="csverror in csverrors">
+						<td>{{ $index + 1}}</td>
+						<td>{{ csverror.msg }}</td>
+						<td>{{ csverror.requestdata }}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</section>
+</div>
