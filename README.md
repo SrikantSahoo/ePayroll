@@ -1,4 +1,4 @@
-# ePayroll - Payslip generation app
+# ePayroll - Payslip generating app
 
 
 ## Getting Started
